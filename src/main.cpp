@@ -58,7 +58,7 @@ int main(int argc, const char** argv)
     }
 	/* split org yuv */
 
-    //yuv_split(config, patch_width, patch_height, pic_width, pic_height);
+    yuv_split(config, patch_width, patch_height, pic_width, pic_height);
 
     string yuv_org[5];
     string yuv_rec[5];
@@ -71,13 +71,14 @@ int main(int argc, const char** argv)
     }
 
 	
-    //run encoder
-    //encoder(config, patch_width, patch_height, yuv_org, yuv_rec, bin);
+    /* run encoder */
 
-	//bin process
+    encoder(config, patch_width, patch_height, yuv_org, yuv_rec, bin);
+
+    /* bitstream merge */
     bin_process(bin, frame_cnt);
 
-	//rec process
+	/* generate rec yuv */
 #if DEBUG
     yuv_joint();
 #endif
