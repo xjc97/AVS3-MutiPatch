@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LocalDebuggerCommandArguments>-ffmpeg G:\MutiPatch\MutiPatch\ffmpeg.exe -app G:\MutiPatch\encoder_app.exe -head G:\MutiPatch\head_info_app.exe --config G:\MutiPatch\encode_IPPP_416.cfg -i E:\project\YUV\BQSquare_416x240_60.yuv -r Unit1-1_rec.yuv -o Unit1-1_out.bin -w 416 -h 240 -f 2 </LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommandArguments>-ffmpeg G:\MutiPatch\MutiPatch\ffmpeg.exe -app G:\MutiPatch\encoder_app.exe -head G:\MutiPatch\head_info_app.exe --config G:\MutiPatch\encode_IPPP_416.cfg -i E:\project\YUV\BQSquare_416x240_60.yuv -r Unit1-1_rec.yuv -o Unit1-1_out.bin -w 416 -h 240 -f 2 </LocalDebuggerCommandArguments>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+</Project>

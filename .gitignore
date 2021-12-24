@@ -1,0 +1,7 @@
+MutiPatch/.vs
+MutiPatch/Debug
+MutiPatch/Release
+MutiPatch/-p
+*.yuv
+*.bin
+*.txt
