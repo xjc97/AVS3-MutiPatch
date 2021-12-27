@@ -6,7 +6,15 @@
 #include "yuv_process.h"
 #include "app_args.h"
 
-
+bool is_file_exist(string path) {
+#if defined LINUX 
+    if (access(path.c_str(), 0) == 0)return true;
+    else return false;
+#else
+    if (_access(path.c_str(), 0) == 0)return true;
+    else return false;
+#endif
+}
 
 int main(int argc, const char** argv)
 {
@@ -80,8 +88,22 @@ int main(int argc, const char** argv)
 
 	/* generate rec yuv */
 #if DEBUG
-    yuv_joint();
+    yuv_joint(config, yuv_rec, patch_width, patch_height);
 #endif
+
+    for (int i = 0; i < PATCH_CNT; i++)
+    {
+        yuv_org[i].append(".yuv");
+        bin[i].append(".bin");
+        if (is_file_exist(yuv_org[i]))
+        {
+            remove(yuv_org[i].data());
+        }
+        if (is_file_exist(bin[i]))
+        {
+            remove(bin[i].data());
+        }
+    }
 
 	return 0;
 }

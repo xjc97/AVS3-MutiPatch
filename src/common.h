@@ -3,12 +3,22 @@
 #include <stdlib.h>
 #include <string>
 #include <assert.h>
+#include <corecrt_io.h>
+
+#if defined(__linux__)
+
+#else
+#include <Windows.h>
+#endif
+
+
+
 using namespace std;
 
-#define DEBUG 0
+#define DEBUG 1
 #define PATCH_CNT 2
 #define COMAND_CNT 10
-#define EXE_PATH "G:\\MutiPatch\\app_encoder.exe "
+
 #define SWITCH_YUV 		int n = cfg.find(yuv_org[i]);\
 						cfg.replace(n, yuv_org[i].length(), yuv_org[i + 1]);\
 						n = cfg.find(yuv_rec[i]);\
@@ -39,6 +49,10 @@ typedef struct __CFG_INFO__
 	string head_info_app;
 	string ffmpeg_app;
 }CFG_INFO;
+
+
+bool is_file_exist(string path);
+
 
 #endif // !_COM_
 

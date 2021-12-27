@@ -325,6 +325,10 @@ void bin_process(string bin[5], int frame_cnt)
     }
 
     FILE* bs_head = fopen("head.bin", "rb");
+    if (is_file_exist("merge_bs.bin"))
+    {
+        remove("merge_bs.bin");
+    }
     FILE* bs_out = fopen("merge_bs.bin", "ab");
     unsigned char* bs_final = NULL;
     unsigned char* bs_tmp = NULL;
