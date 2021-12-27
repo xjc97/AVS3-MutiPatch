@@ -1,6 +1,12 @@
 #include "encoder.h"
 using namespace std;
-void encoder(CFG_INFO & config_info, int patch_width[PATCH_CNT], int patch_height[PATCH_CNT], string yuv_org[5], string yuv_rec[5], string bin[5])
+#if THREAD_EN
+void thread_core(string cfg)
+{
+    system(cfg.data());
+}
+#endif
+void encoder(CFG_INFO& config_info, int patch_width[PATCH_CNT], int patch_height[PATCH_CNT], string yuv_org[5], string yuv_rec[5], string bin[5])
 {
     string head_info = config_info.head_info_app;
     head_info.append(" --config ");
@@ -56,10 +62,25 @@ void encoder(CFG_INFO & config_info, int patch_width[PATCH_CNT], int patch_heigh
         }
     }
 
+#if THREAD_EN
+    thread task[PATCH_CNT];
+#endif
+
     /* encode patch separatly */
     for (int i = 0; i < PATCH_CNT; i++)
     {
+#if THREAD_EN
+        task[i] = thread(thread_core, cfg);
+#else
         system(cfg.data());
+#endif
         SWITCH_YUV
     }
+#if THREAD_EN
+    for (auto& t : task) {
+        t.join();
+    }
+#endif
 }
+
+

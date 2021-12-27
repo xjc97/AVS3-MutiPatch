@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string>
 #include <assert.h>
+#include <thread>
 #include <corecrt_io.h>
 
 #if defined(__linux__)
@@ -15,9 +16,10 @@
 
 using namespace std;
 
-#define DEBUG 1
-#define PATCH_CNT 2
-#define COMAND_CNT 10
+#define DEBUG 1             //decide whether generate test_rec for debug
+#define THREAD_EN 1         //decide whether enable muti-thread to encode
+#define PATCH_CNT 2         //decide the patch number of one pic, (2, 4)
+#define COMAND_CNT 10       //input args num 
 
 #define SWITCH_YUV 		int n = cfg.find(yuv_org[i]);\
 						cfg.replace(n, yuv_org[i].length(), yuv_org[i + 1]);\
