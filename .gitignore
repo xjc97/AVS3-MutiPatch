@@ -2,6 +2,8 @@ MutiPatch/.vs
 MutiPatch/Debug
 MutiPatch/Release
 MutiPatch/-p
+build
 *.yuv
 *.bin
 *.txt
+!CMakeLists.txt

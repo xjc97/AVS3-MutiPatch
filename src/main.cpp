@@ -7,7 +7,7 @@
 #include "app_args.h"
 
 bool is_file_exist(string path) {
-#if defined LINUX 
+#if defined(__linux__)
     if (access(path.c_str(), 0) == 0)return true;
     else return false;
 #else
@@ -66,7 +66,7 @@ int main(int argc, const char** argv)
     }
 	/* split org yuv */
 
-    yuv_split(config, patch_width, patch_height, pic_width, pic_height);
+    //yuv_split(config, patch_width, patch_height, pic_width, pic_height);
 
     string yuv_org[5];
     string yuv_rec[5];
@@ -84,13 +84,14 @@ int main(int argc, const char** argv)
     encoder(config, patch_width, patch_height, yuv_org, yuv_rec, bin);
 
     /* bitstream merge */
-    bin_process(bin, frame_cnt);
+    //bin_process(bin, frame_cnt);
 
 	/* generate rec yuv */
 #if DEBUG
     yuv_joint(config, yuv_rec, patch_width, patch_height);
 #endif
 
+#if !DEBUG
     for (int i = 0; i < PATCH_CNT; i++)
     {
         yuv_org[i].append(".yuv");
@@ -104,6 +105,7 @@ int main(int argc, const char** argv)
             remove(bin[i].data());
         }
     }
+#endif
 
 	return 0;
 }

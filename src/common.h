@@ -1,14 +1,15 @@
 #ifndef _COM_
 #define _COM_
 #include <stdlib.h>
-#include <string>
 #include <assert.h>
 #include <thread>
-#include <corecrt_io.h>
 
 #if defined(__linux__)
-
+#include <string.h>
+#include <unistd.h>
 #else
+#include <string>
+#include <corecrt_io.h>
 #include <Windows.h>
 #endif
 
