@@ -207,9 +207,10 @@ void bin_prosess_one_frame(
     int patch_idx_pos[PATCH_CNT - 1] = { 0 };
 
     /** write the head info **/
+
     if (frame_cnt)
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             bs_size = read_a_bs(bin_3, bs_read_pos_3, bs_tmp);
             if (i)
@@ -233,6 +234,7 @@ void bin_prosess_one_frame(
 
     for (int i = 0; i < PATCH_CNT; i++)
     {
+        /*
         if (frame_cnt)
         {
             for (int j = 0; j < 2; j++)
@@ -247,6 +249,7 @@ void bin_prosess_one_frame(
             }
         }
         else
+        */
         {
             for (int j = 0; j < 3; j++)
             {

@@ -37,7 +37,7 @@ int main(int argc, const char** argv)
             cfg += config.cfg_info[i];
         }
     }
-
+#if SPLIT_MODE != 0
     for (int i = 0; i < PATCH_CNT; i++)
     {
         if (i & 1)
@@ -64,6 +64,21 @@ int main(int argc, const char** argv)
             }
         }
     }
+#else
+    for (int i = 0; i < PATCH_CNT; i++)
+    {
+        if (i & 1)
+        {
+            patch_height[i] = pic_height - patch_height[i - 1];
+        }
+        else
+        {
+            patch_height[i] = 128;
+        }
+
+        patch_width[i] = pic_width;
+    }
+#endif
 	/* split org yuv */
 
     //yuv_split(config, patch_width, patch_height, pic_width, pic_height);
@@ -84,7 +99,7 @@ int main(int argc, const char** argv)
     encoder(config, patch_width, patch_height, yuv_org, yuv_rec, bin);
 
     /* bitstream merge */
-    //bin_process(bin, frame_cnt);
+    bin_process(bin, frame_cnt);
 
 	/* generate rec yuv */
 #if DEBUG

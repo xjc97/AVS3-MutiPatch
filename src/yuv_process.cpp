@@ -30,7 +30,12 @@ void yuv_joint(CFG_INFO& config, string* yuv_rec, int patch_width[PATCH_CNT], in
     cfg.append(":");
     cfg += config.cfg_info[3];
     cfg.append("[a]; [a] [1:v] overlay = ");
+#if SPLIT_MODE != 0
     cfg += width[0];
+#else
+    cfg.append("0:");
+    cfg += height[0];
+#endif
 #if PATCH_CNT == 4
     cfg.append("[b]; [b] [2:v] overlay = ");
     cfg.append("0:");
@@ -56,8 +61,13 @@ void yuv_split(CFG_INFO & config, int patch_width[PATCH_CNT], int patch_height[P
     int x_pos, y_pos = 0;
     for (int i = 0; i < PATCH_CNT; i++)
     {
+#if SPLIT_MODE != 0
         x_pos = i & 1 ? patch_width[0] : 0;
         y_pos = i > 1 ? patch_height[0] : 0;
+#else
+        x_pos = 0;
+        y_pos = i == 0 ? 0 : patch_height[0];
+#endif
         split_yuv_command[i] = config.ffmpeg_app;
         split_yuv_command[i].append(" -y ");
         split_yuv_command[i].append(" -s ");

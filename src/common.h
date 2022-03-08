@@ -21,6 +21,7 @@ using namespace std;
 #define THREAD_EN 1         //decide whether enable muti-thread to encode
 #define PATCH_CNT 2         //decide the patch number of one pic, (2, 4)
 #define COMAND_CNT 10       //input args num 
+#define SPLIT_MODE 0        //split mode of picture, 0:Hor-bi; 1:Ver-bi; 2:Quad
 
 #define SWITCH_YUV 		int n = cfg.find(yuv_org[i]);\
 						cfg.replace(n, yuv_org[i].length(), yuv_org[i + 1]);\

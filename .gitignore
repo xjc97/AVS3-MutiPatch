@@ -2,6 +2,7 @@ MutiPatch/.vs
 MutiPatch/Debug
 MutiPatch/Release
 MutiPatch/-p
+MutiPatch/x64
 build
 *.yuv
 *.bin
